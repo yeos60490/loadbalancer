@@ -1,0 +1,27 @@
+version: '2'
+
+services:
+
+  traefik_pub:
+    image: traefik:v1.7.16-alpine
+    container_name: traefik_pub
+    command:
+      - "--api.dashboard"
+    restart: always
+    ports:
+      - 80:80
+      - 443:443
+      - 9090:8080
+    networks:
+      - pub_net
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /root/docker/traefik/traefik.toml:/traefik.toml
+      - /root/docker/traefik/acme.json:/acme_pub.json:rw
+      - /etc/letsencrypt/live/{domain}/fullchain.pem:/{domain}.cert.pem
+      - /etc/letsencrypt/live/{domain}/privkey.pem:/{domain}.privkey.pem
+
+
+networks:
+  pub_net:
+    external: true
