@@ -4,9 +4,13 @@
 - Image: traefik:v1.7.16-alpine 
 - 출처 : https://hub.docker.com/_/traefik
 
+
+
 2. 제공하는 기능
 - sticky session 
 - ssl 인증서 연결
+
+
 
 3. 시행착오
 - 처음에 docker swarm, docker stack 이 제공하는 loadbalancer 를 사용했지만, stickysession 을 제공하지 않는다.
