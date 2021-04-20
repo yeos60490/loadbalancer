@@ -30,3 +30,4 @@
 # 환경
 - docker version: 19.03.12
 - docker-compose version: 1.27.1
+- ssl 인증서 경로 : /etc/letsencrypt/
