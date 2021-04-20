@@ -28,5 +28,5 @@
 - volume 을 사용하여 ssl 인증서를 traefik 에 연결했다.
   
 # 환경
-docker version: 19.03.12
-docker-compose version: 1.27.1
+- docker version: 19.03.12
+- docker-compose version: 1.27.1
