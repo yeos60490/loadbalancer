@@ -1,4 +1,4 @@
-# Load Balancer 구현
+# Sticky-session Load Balancer 구현
 
 -------
 #### 시행착오
