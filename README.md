@@ -25,17 +25,16 @@
 - {domain}, {image}, {email} 안에 해당되는 내용을 추가한다
 - 네트워크를 만든다 (이름은 yml 파일에 정의되어 있음)
 
-  docker create network pub_net 
+      docker create network pub_net 
   
 - traefik 컨테이너를 실행한다
 
-  docker-compose up -d
+      docker-compose up -d
   
 - web 컨테이너를 실행하고 복제한다 (원하는 개수만큼)
 
-  cd web
-  
-  docker-compose up -d
+      cd web
+      docker-compose up -d
   
   docker-compose scale pub=5 
   
