@@ -35,8 +35,7 @@
 
       cd web
       docker-compose up -d
-  
-  docker-compose scale pub=5 
+      docker-compose scale pub=5 
   
  ------ 
 
