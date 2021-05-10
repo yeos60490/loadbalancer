@@ -29,6 +29,7 @@
   
 - traefik 컨테이너를 실행한다
 
+      cd loadbalancer
       docker-compose up -d
   
 - web 컨테이너를 실행하고 복제한다 (원하는 개수만큼)
