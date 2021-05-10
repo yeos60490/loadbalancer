@@ -8,16 +8,18 @@
 - volume 을 사용하여 ssl 인증서를 traefik 에 연결했다.
 ------
 
-#### 사용하는 이미지 
+#### 기본 이미지 
 - Image: traefik:v1.7.16-alpine 
 - 출처 : https://hub.docker.com/_/traefik
 
 ------
 
-#### 제공하는 기능
+#### 기능
+- loadbalancer
 - sticky session 
 - ssl 인증서 연결
 - dashboard 사용
+- WAS container 랑 loadbalancer 연결
 
 ------
 
@@ -26,6 +28,7 @@
 - 네트워크를 만든다 (이름은 yml 파일에 정의되어 있음)
 
       docker create network pub_net 
+      docker create network tbd_net
   
 - traefik 컨테이너를 실행한다
 
@@ -36,7 +39,8 @@
 
       cd web
       docker-compose up -d
-      docker-compose scale pub=5 
+      docker-compose scale pub=10
+      docker-compose scale tbd=3
   
  ------ 
 
@@ -44,3 +48,4 @@
 - docker version: 19.03.12
 - docker-compose version: 1.27.1
 - ssl 인증서 경로 : /etc/letsencrypt/
+- web source 경로 : /var/www/html_pub , /var/www/html_tbd
