@@ -1,7 +1,7 @@
 version: "3"
 services:
   pub:
-    image: {images}
+    image: {image}
     ports:
       - "80"
       - "443"
@@ -10,19 +10,46 @@ services:
     networks:
       - pub_net
     volumes:
-      - /var/www/html:/var/www/html
+      - /var/www/html_pub:/var/www/html/
       - /etc/letsencrypt:/etc/letsencrypt/
     labels:
       - "traefik.docker.network=pub_net"
       - "traefik.enable=true"
 
-      - "traefik.console.frontend.rule=Host:{domain}"
-      - "traefik.console.port=80"
-      - "traefik.console.protocol=http"
+      - "traefik.admin.frontend.rule=Host:{domain}"
+      - "traefik.admin.port=80"
+      - "traefik.admin.protocol=http"
 
       - "traefik.backend.loadbalancer.stickiness=true"
       - "traefik.tags=pub"
 
+
+  tbd:
+    image: {image}
+    ports:
+      - "80"
+      - "443"
+    restart: always
+    privileged: true
+    networks:
+      - tbd_net
+    volumes:
+      - /var/www/html_tbd:/var/www/html/
+      - /etc/letsencrypt:/etc/letsencrypt/
+    labels:
+      - "traefik.docker.network=tbd_net"
+      - "traefik.enable=true"
+
+      - "traefik.admin.frontend.rule=Host:{domain}"
+      - "traefik.admin.port=80"
+      - "traefik.admin.protocol=http"
+
+      - "traefik.backend.loadbalancer.stickiness=true"
+      - "traefik.tags=tbd"
+
+
 networks:
   pub_net:
+    external: true
+  tbd_net:
     external: true

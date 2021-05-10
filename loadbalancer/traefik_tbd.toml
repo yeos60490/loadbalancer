@@ -2,7 +2,7 @@ debug = false
 
 logLevel = "ERROR"
 defaultEntryPoints = ["https","http"]
-constraints = ["tag==pub"]
+constraints = ["tag==tbd"]
 
 [entryPoints]
   [entryPoints.http]
@@ -19,7 +19,7 @@ constraints = ["tag==pub"]
 
 [certificatesResolvers.myresolver.acme]
   email = "{email}"
-  storage = "acme.json"
+  storage = "acme_tbd.json"
   [certificatesResolvers.myresolver.acme.httpChallenge]
     # used during the challenge
     entryPoint = "http"
@@ -37,9 +37,8 @@ exposedByDefault = false
 
 [acme]
 email = "{email}"
-storage = "acme.json"
+storage = "acme_tbd.json"
 entryPoint = "https"
 onHostRule = true
 [acme.httpChallenge]
-entryPoint = "http"
-                     
+entryPoint = "http"   

@@ -9,19 +9,41 @@ services:
       - "--api.dashboard"
     restart: always
     ports:
-      - 80:80
-      - 443:443
+      - 800:80
+      - 4430:443
       - 9090:8080
     networks:
       - pub_net
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-      - /root/docker/traefik/traefik.toml:/traefik.toml
-      - /root/docker/traefik/acme.json:/acme_pub.json:rw
+      - /root/docker/traefik/traefik_pub.toml:/traefik.toml
+      - /root/docker/traefik/acme_pub.json:/acme_pub.json:rw
+      - /etc/letsencrypt/live/{domain}/fullchain.pem:/{domain}.cert.pem
+      - /etc/letsencrypt/live/{domain}/privkey.pem:/{domain}.privkey.pem
+
+
+  traefik_tbd:
+    image: traefik:v1.7.16-alpine
+    container_name: traefik_tbd
+    command:
+      - "--api.dashboard"
+    restart: always
+    ports:
+      - 801:80
+      - 4431:443
+      #- 9090:8080
+    networks:
+      - tbd_net
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /root/docker/traefik/traefik_tbd.toml:/traefik.toml
+      - /root/docker/traefik/acme_tbd.json:/acme_tbd.json:rw
       - /etc/letsencrypt/live/{domain}/fullchain.pem:/{domain}.cert.pem
       - /etc/letsencrypt/live/{domain}/privkey.pem:/{domain}.privkey.pem
 
 
 networks:
   pub_net:
+    external: true
+  tbd_net:
     external: true
