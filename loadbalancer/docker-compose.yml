@@ -16,15 +16,15 @@ services:
       - pub_net
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-      - /root/docker/traefik/traefik_pub.toml:/traefik.toml
-      - /root/docker/traefik/acme_pub.json:/acme_pub.json:rw
+      - /root/docker/traefik/traefik.toml:/traefik.toml
+      - /root/docker/traefik/acme.json:/acme.json:rw
       - /etc/letsencrypt/live/{domain}/fullchain.pem:/{domain}.cert.pem
       - /etc/letsencrypt/live/{domain}/privkey.pem:/{domain}.privkey.pem
 
 
-  traefik_tbd:
+  traefik_test:
     image: traefik:v1.7.16-alpine
-    container_name: traefik_tbd
+    container_name: traefik_test
     command:
       - "--api.dashboard"
     restart: always
@@ -33,11 +33,11 @@ services:
       - 4431:443
       #- 9090:8080
     networks:
-      - tbd_net
+      - test_net
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-      - /root/docker/traefik/traefik_tbd.toml:/traefik.toml
-      - /root/docker/traefik/acme_tbd.json:/acme_tbd.json:rw
+      - /root/docker/traefik/traefik_test.toml:/traefik.toml
+      - /root/docker/traefik/acme_test.json:/acme_test.json:rw
       - /etc/letsencrypt/live/{domain}/fullchain.pem:/{domain}.cert.pem
       - /etc/letsencrypt/live/{domain}/privkey.pem:/{domain}.privkey.pem
 
@@ -45,5 +45,5 @@ services:
 networks:
   pub_net:
     external: true
-  tbd_net:
+  test_net:
     external: true
