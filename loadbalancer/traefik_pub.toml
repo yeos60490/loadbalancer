@@ -19,7 +19,7 @@ constraints = ["tag==pub"]
 
 [certificatesResolvers.myresolver.acme]
   email = "{email}"
-  storage = "acme_pub.json"
+  storage = "acme.json"
   [certificatesResolvers.myresolver.acme.httpChallenge]
     # used during the challenge
     entryPoint = "http"
@@ -37,7 +37,7 @@ exposedByDefault = false
 
 [acme]
 email = "{email}"
-storage = "acme_pub.json"
+storage = "acme.json"
 entryPoint = "https"
 onHostRule = true
 [acme.httpChallenge]
