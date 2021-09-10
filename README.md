@@ -28,7 +28,7 @@
 - 네트워크를 만든다 (이름은 yml 파일에 정의되어 있음)
 
       docker create network pub_net 
-      docker create network tbd_net
+      docker create network test_net
   
 - traefik 컨테이너를 실행한다
 
@@ -40,7 +40,7 @@
       cd web
       docker-compose up -d
       docker-compose scale pub=10
-      docker-compose scale tbd=3
+      docker-compose scale test=3
   
  ------ 
 
@@ -48,4 +48,4 @@
 - docker version: 19.03.12
 - docker-compose version: 1.27.1
 - ssl 인증서 경로 : /etc/letsencrypt/
-- web source 경로 : /var/www/html_pub , /var/www/html_tbd
+- web source 경로 : /var/www/html , /var/www/html_test
