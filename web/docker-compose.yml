@@ -10,7 +10,7 @@ services:
     networks:
       - pub_net
     volumes:
-      - /var/www/html_pub:/var/www/html/
+      - /var/www/html:/var/www/html/
       - /etc/letsencrypt:/etc/letsencrypt/
     labels:
       - "traefik.docker.network=pub_net"
@@ -24,7 +24,7 @@ services:
       - "traefik.tags=pub"
 
 
-  tbd:
+  test:
     image: {image}
     ports:
       - "80"
@@ -32,12 +32,12 @@ services:
     restart: always
     privileged: true
     networks:
-      - tbd_net
+      - test_net
     volumes:
-      - /var/www/html_tbd:/var/www/html/
+      - /var/www/html_test:/var/www/html/
       - /etc/letsencrypt:/etc/letsencrypt/
     labels:
-      - "traefik.docker.network=tbd_net"
+      - "traefik.docker.network=test_net"
       - "traefik.enable=true"
 
       - "traefik.admin.frontend.rule=Host:{domain}"
@@ -51,5 +51,5 @@ services:
 networks:
   pub_net:
     external: true
-  tbd_net:
+  test_net:
     external: true
