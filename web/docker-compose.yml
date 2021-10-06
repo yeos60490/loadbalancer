@@ -45,7 +45,7 @@ services:
       - "traefik.admin.protocol=http"
 
       - "traefik.backend.loadbalancer.stickiness=true"
-      - "traefik.tags=tbd"
+      - "traefik.tags=test"
 
 
 networks:
